@@ -13,10 +13,19 @@ export interface ApiTutorial {
 })
 export class TutorialService {
 
+  private apiUrl = 'http://localhost/ionic/add-buku.php';
+
   constructor(private http: HttpClient) { }
 
   getTutorial():Observable<ApiTutorial>{
     return this.http.get<ApiTutorial>(`${environment.baseUrl}/ionic/index.php`);
+  }
+  getBuku():Observable<ApiTutorial>{
+    return this.http.get<ApiTutorial>(`${environment.baseUrl}/ionic/get-buku.php`);
+  }
+
+  addBuku(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 
   // tambahTutorial(data:{title:string, description:string}):Observable<{title:string, description:string}>{
